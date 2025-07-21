@@ -1,0 +1,32 @@
+name: Daily Metrics Commit
+
+on:
+  schedule:
+    - cron: '0 3 * * *'  # 00:00 BRT (UTC+3)
+  workflow_dispatch: {}
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run metrics update script
+        run: node update.js
+
+      - name: Commit and push
+        run: |
+          git config user.name "gugs881"
+          git config user.email "gugs881@gmail.com"
+          git add metrics/daily.json
+          git commit -m "update metrics: $(date -u +'%Y-%m-%d')" || echo "No changes to commit"
+          git push
