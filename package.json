@@ -1,0 +1,20 @@
+{
+  "name": "metricflow",
+  "version": "1.0.0",
+  "description": "",
+  "main": "update.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gugs881/metricflow.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gugs881/metricflow/issues"
+  },
+  "homepage": "https://github.com/gugs881/metricflow#readme"
+}
