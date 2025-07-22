@@ -22,7 +22,7 @@ jobs:
         run: npm install
 
       - name: Run metrics update script
-        run: node update.js
+        run: node update.cjs
 
       - name: Commit and push
         env:
