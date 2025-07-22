@@ -2,12 +2,13 @@ name: Daily Metrics Commit
 
 on:
   schedule:
-    - cron: '0 3 * * *'  # 00:00 BRT (UTC+3)
-  workflow_dispatch: {}
+    - cron: '21 14 * * *'  # 11:21 BRT (14:21 UTC)
+  workflow_dispatch:
 
 jobs:
   commit:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -24,9 +25,11 @@ jobs:
         run: node update.js
 
       - name: Commit and push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "gugs881"
           git config user.email "gugs881@gmail.com"
           git add metrics/daily.json
           git commit -m "update metrics: $(date -u +'%Y-%m-%d')" || echo "No changes to commit"
-          git push
+          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} HEAD:main
