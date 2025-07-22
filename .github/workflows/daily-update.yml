@@ -2,7 +2,7 @@ name: Daily Metrics Commit
 
 on:
   schedule:
-    - cron: '21 14 * * *'  # 11:21 BRT (14:21 UTC)
+    - cron: '43 14 * * *'  # 11:21 BRT (14:21 UTC)
   workflow_dispatch:
 
 jobs:
